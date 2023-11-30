@@ -18,6 +18,7 @@ urlpatterns = [
     path('estimate_quotation', views.estimate_quotation, name='estimate_quotation'),
     path('payment_in', views.payment_in, name='payment_in'),
     path('sale_order', views.sale_order, name='sale_order'),
+<<<<<<< HEAD
     path('delivery_challan', views.delivery_challan, name='delivery_challan'),
     path('sale_return_cr', views.sale_return_cr, name='sale_return_cr'),
 
@@ -220,6 +221,10 @@ urlpatterns = [
     path('create_expense_category',views.create_expense_category,name='create_expense_category'),
     
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+=======
+    path('delivery_chellan', views.delivery_chellan, name='delivery_chellan'),
+    path('sale_return_cr', views.sale_return_cr, name='sale_return_cr'),
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee
     
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

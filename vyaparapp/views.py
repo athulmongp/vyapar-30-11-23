@@ -4409,6 +4409,7 @@ def login(request):
   
 
 def homepage(request):
+<<<<<<< HEAD
  
   staff_id = request.session['staff_id']
   print(staff_id)
@@ -4429,6 +4430,13 @@ def staff_request(request):
   data = staff_details.objects.filter(company=staff.company.id,Action=0,position='staff').order_by('-id')
   allmodules= modules_list.objects.get(company=staff.company.id,status='New')
   return render(request,'company/staff_request.html',{'staff':staff,'data':data,'allmodules':allmodules}) 
+=======
+  company =  company_details.objects.get(user = request.user)
+  context = {
+              'company' : company
+          }
+  return render(request, 'homepage.html', context)
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee
 
 # @login_required(login_url='login')
 def staffhome(request):
@@ -4586,6 +4594,7 @@ def staff_profile(request):
   staff =  staff_details.objects.get(id=staff_id)
   allmodules= modules_list.objects.get(company=staff.company.id,status='New')
   context = {
+<<<<<<< HEAD
               'staff' : staff,
               'allmodules':allmodules
 
@@ -4789,3 +4798,28 @@ def create_expense_category(request):
   return JsonResponse({'message':'asdasd'})
 
     
+=======
+      'company' : company,
+      'user1' : user1,
+  } 
+  return render(request,'edit_profile.html',context)
+
+
+def sale_invoices(request):
+  return render(request, 'sale_invoices.html')
+
+def estimate_quotation(request):
+  return render(request, 'estimate_quotation.html')
+
+def payment_in(request):
+  return render(request, 'payment_in.html')
+    
+def sale_order(request):
+  return render(request, 'sale_order.html')
+
+def delivery_chellan(request):
+  return render(request, 'delivery_chellan.html')
+
+def sale_return_cr(request):
+  return render(request, 'sale_return_cr.html')
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee

@@ -557,6 +557,7 @@
 
   /* Apply custom styles to the navbar */
   .navbar {
+<<<<<<< HEAD:vyaparapp/templates/company/base2.html
     background-color: #333;
     /* Set the background color */
     /* border-bottom: 2px solid #555; Add a border at the bottom */
@@ -565,6 +566,12 @@
     padding-left: 0px;
     margin-left: 0px;
     /* Adjust the value as needed */
+=======
+      background-color: #333; /* Set the background color */
+      border-bottom: 2px solid #555; /* Add a border at the bottom */
+      height: 4.5rem;
+      z-index: 1000; /* Adjust the value as needed */
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee:vyaparapp/templates/base.html
   }
 
   /* Style the navbar buttons */
@@ -573,7 +580,12 @@
     /* Add some spacing between buttons */
   }
 
+<<<<<<< HEAD:vyaparapp/templates/company/base2.html
   #addsale {
+=======
+  #addsale{
+    margin-left: 37.5rem;
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee:vyaparapp/templates/base.html
     background: #990012;
     color: white;
     border-radius: 20px;
@@ -735,7 +747,26 @@
     </a>
     <nav id="sidebar" class="sidebar-wrapper" style="background: #455a81;margin-top: 25px;">
       <div class="sidebar-content">
+<<<<<<< HEAD:vyaparapp/templates/company/base2.html
 
+=======
+        {% comment %} <div class="sidebar-header">
+        <h1 class="text-center" style="font-size: 18px; color: white;">
+          <a href="#">
+            <b class="text-white" style="font-size: 18px; color: white;">VYAPAR</b>
+          </a>
+        </h1>
+
+          <div id="close-sidebar" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-angle-double-left"></i>
+            <i class="fas fa-times"></i>
+          </div> {% endcomment %}
+          <!-- Add a button to partially close the sidebar -->
+          {% comment %} <div id="partial-close-sidebar" class="btn btn-sm btn-dark" style="float: right; margin-top: -2rem;">
+            <i class="fas fa-angle-double-left"></i>
+          </div>
+        </div> {% endcomment %}
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee:vyaparapp/templates/base.html
 
 
 
@@ -852,6 +883,7 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
+<<<<<<< HEAD:vyaparapp/templates/company/base2.html
                   <li id="saleinvoice">
                     <a href="{% url 'sale_invoices' %}"><b>Sale Invoices</b>
                       <i class="fa fa-plus"></i>
@@ -879,6 +911,35 @@
                   </li>
                   <li id="SaleReturn">
                     <a href="{% url 'sale_return_cr' %}"><b>Sale Return/ Cr. Note</b>
+=======
+                  <li>
+                    <a href="{% url "sale_invoices" %}"><b>Sale Invoices</b>
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url "estimate_quotation" %}"><b>Estimate/ Quotation</b>
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url "payment_in" %}"><b>Payment In</b>
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url "sale_order" %}"><b>Sale Order</b>
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url "delivery_chellan" %}"><b>Delivery Challan</b>
+                      <i class="fa fa-plus"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url "sale_return_cr" %}"><b>Sale Return/ Cr. Note</b>
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee:vyaparapp/templates/base.html
                       <i class="fa fa-plus"></i>
                     </a>
                   </li>
@@ -968,6 +1029,7 @@
       </div>
     </nav>
 
+<<<<<<< HEAD:vyaparapp/templates/company/base2.html
 
     <nav class="navbar navbar-expand-lg navbar-light"
       style="background:#455a81; position: fixed;  width: 100%;border-bottom: 1px solid black;">
@@ -1022,6 +1084,68 @@
           </a>
         </button>
 
+=======
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background:  #455a81; position: fixed; width: 100%;">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" style="margin-left: 3rem;" href="#"><b>VYAPAR</b></a>
+        <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav"> <!-- Use ml-auto to push the buttons to the right -->
+            <li class="nav-item">
+              <button class="btn me-2" id="addsale" type="button">
+                <i class="fa fa-plus"></i>
+                Add Sale
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn me-2" id="addproduct" type="button">
+                <i class="fa fa-plus"></i>
+                Add Purchase
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn me-2" id="addmore" type="button">
+                <i class="fa fa-plus"></i>
+                Add More
+              </button>
+            </li>
+          </ul>
+          <div class="sidebar-header" style="margin-left: 9rem;">
+            <div class="user-pic" style="height: 5px;">
+              {% if company.profile_pic %}
+                <img class="img-xs rounded-circle" style="height: 40px; width: 40px;" src="{{ company.profile_pic.url }}" alt="">
+              {% else %}
+                <img class="img-xs rounded-circle" style="height: 40px; width: 40px;" src="{% static 'images/default.jpg' %}" class="rounded-circle">
+              {% endif %}
+            </div>
+            <div class="user-info" style="margin-left: 3rem;">
+              <span class="user-name">
+                {% if company.company_name != None %}
+                  <b class="text-white">{{ company.company_name }}</b>
+                {% else %}
+                  <b class="text-white">Add Company</b>
+                {% endif %}
+              </span>
+            </div>
+            <div id="dropdown-container">
+              <div class="dropdown">
+                <button class="dropbtn">
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="{% url "homepage" %}">Dashboard</a>
+                  <a href="{% url 'view_profile' %}">Profile</a>
+                  <a href="{% url 'logout' %}">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+>>>>>>> aab561b2babd8aca6f1c2b7864eb22df9892acee:vyaparapp/templates/base.html
       </div>
       <button class="navbar-toggler" type="button" role="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
