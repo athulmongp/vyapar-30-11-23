@@ -338,3 +338,13 @@ class DeliveryChallanTransactionHistory(models.Model):
 
     
 # ==================================shemeem --end =======================================
+
+
+# Athul -----expense---start
+class Expense_Category(models.Model):
+    staff = models.ForeignKey(staff_details,on_delete=models.CASCADE,blank=True,null=True)
+    expense_category = models.CharField(max_length=200)
+
+
+# Athul -----expense---end    
+   

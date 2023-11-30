@@ -216,6 +216,8 @@ urlpatterns = [
     path('expense',views.expense,name='expense'),
     path('newexpenses',views.newexpenses,name='newexpenses'),
     path('partydata',views.partydata,name='partydata'),
+    path('add_party_in_expense',views.add_party_in_expense,name='add_party_in_expense'),
+    path('create_expense_category',views.create_expense_category,name='create_expense_category'),
     
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     

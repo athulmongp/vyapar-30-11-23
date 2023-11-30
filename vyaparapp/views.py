@@ -4725,15 +4725,67 @@ def newexpenses(request):
   staff =  staff_details.objects.get(id=staff_id)
   allmodules= modules_list.objects.get(company=staff.company,status='New')
   parties=party.objects.filter(company=staff.company)
+  Category=Expense_Category.objects.filter(staff=staff)
+  bank = BankModel.objects.filter(company=staff.company)
   context={'staff':staff,
            'allmodules':allmodules,
-           'parties':parties}
+           'parties':parties,
+           'Category':Category,
+           'bank':bank,
+           }
   return render(request,'company/newexpenses.html',context)
 
     
 def partydata(request):
     party_id = request.GET.get('id')
     p = party.objects.get(id=party_id)
-    data7 = {'email': p.email,'openingbalance':p.openingbalance,'address':p.address,'contact':p.contact}
+    data7 = {'email': p.email,'openingbalance':p.openingbalance,'address':p.address,'contact':p.contact,'payment':p.payment}
     return JsonResponse(data7)
+
+def add_party_in_expense(request):
+  if request.method == 'POST':
+    sid = request.session.get('staff_id')
+    staff =  staff_details.objects.get(id=sid)
+    cmp = company.objects.get(id=staff.company.id)
+
+    party_name = request.POST['name']
+    email = request.POST['email']
+    contact = request.POST['mobile']
+    state = request.POST['splystate']
+    address = request.POST['baddress']
+    gst_type = request.POST['gsttype']
+    gst_no = request.POST['gstin']
+    current_date = request.POST['partydate']
+    openingbalance = request.POST.get('openbalance')
+    payment = request.POST.get('paytype')
+    creditlimit = request.POST.get('credit_limit')
+    End_date = request.POST.get('enddate', None)
+    additionalfield1 = request.POST['add1']
+    additionalfield2 = request.POST['add2']
+    additionalfield3 = request.POST['add3']
+
+    part = party(party_name=party_name, gst_no=gst_no,contact=contact,gst_type=gst_type, state=state,address=address, email=email, openingbalance=openingbalance,
+                payment=payment,creditlimit=creditlimit,current_date=current_date,End_date=End_date,additionalfield1=additionalfield1,additionalfield2=additionalfield2,
+                additionalfield3=additionalfield3,company=cmp,user=cmp.user)
+    part.save() 
+    options = {}
+    option_objects =party.objects.filter(company=staff.company.id)
+    for option in option_objects:
+      options[option.id] = [option.party_name]
+    return JsonResponse(options) 
+  else:
+    return JsonResponse({'error': 'Invalid request'},status=400)
+  
+
+@login_required(login_url='login')
+def create_expense_category(request):
+  if request.method=='POST':
+    sid = request.session.get('staff_id')
+    staff =  staff_details.objects.get(id=sid)
+    
+    category_name = request.POST.get('item_unit_name')
+    category_data = Expense_Category(staff = staff,expense_category=category_name)
+    category_data.save()
+  return JsonResponse({'message':'asdasd'})
+
     
